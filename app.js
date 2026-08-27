@@ -4,6 +4,15 @@ const TAREAS = [
   { texto: "Abrir un Pull Request", hecha: false },
 ];
 
+function actualizarContador() {
+  const pendientes = TAREAS.filter(function (t) {
+    return !t.hecha;
+  }).length;
+
+  document.querySelector("#contador").textContent =
+    pendientes + " pendientes";
+}
+
 function render() {
   const lista = document.querySelector("#lista");
   lista.innerHTML = "";
@@ -14,6 +23,8 @@ function render() {
     li.textContent = t.texto;
     lista.appendChild(li);
   });
+
+  actualizarContador();
 }
 
 render();
